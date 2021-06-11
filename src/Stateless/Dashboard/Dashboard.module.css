@@ -1,0 +1,8 @@
+.Dashboard {
+    display: flex;
+    justify-content: center;
+}
+
+.root {
+    padding-top: 16px;
+}

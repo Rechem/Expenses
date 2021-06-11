@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Dashboard from './Stateless/Dashboard/Dashboard.js'
+import Layout from './Hoc/Layout'
+import Expenses from './Stateless/Expenses/Expenses'
+import { StylesProvider } from '@material-ui/core/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#FF2E94",
+    },
+  },
+  typography: {
+    h3 : {
+      fontSize : 28,
+      fontWeight: 700,
+    },
+    body1 : {
+      fontSize : 16,
+      fontWeight : 500,
+      textTransform: 'none',
+    },
+    body2 : {
+      fontSize : 14,
+      fontWeight : 500,
+      textTransform: 'none',
+    }
+  }
+});
+
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <ThemeProvider theme = {Theme}>
+          <StylesProvider injectFirst>
+            <Layout>
+              <Dashboard/>
+              <Expenses/>
+            </Layout>
+          </StylesProvider>
+        </ThemeProvider>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;

@@ -1,0 +1,9 @@
+.LayoutBackground{
+    height: 100vh;
+    background-color: #F2F0F1;
+}
+
+.Layout{
+    margin: auto;
+    width: 745px;
+}
