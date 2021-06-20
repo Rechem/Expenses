@@ -3,7 +3,7 @@ import { useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Icon from '../Icon/Icon'
+import Icon from '../../UI/Icon/Icon'
 import classes from './Expense.module.css'
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,7 +11,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
-const Expense = () => {
+const Expense = (props) => {
     const theme = useTheme();
 
     const options = ["Edit","Delete"]
@@ -29,7 +29,7 @@ const Expense = () => {
         setAnchorEl(null);
     };
     return (
-        <Card>
+        <Card className={classes.root}>
             <div className={classes.CardBody}> 
                 <Box component="div"
                 style={
@@ -47,16 +47,16 @@ const Expense = () => {
                 </Box>
                 <Box>
             <Typography variant="body1" component="div" color="textPrimary">
-                Morning Coffee
+                {props.title}
             </Typography>
             <Typography variant="body2" component="div" color="textSecondary">
-                6th June 2021
+                {props.date}
             </Typography>
                 </Box>
                 <Typography
                 variant="body1" component="div" color="textPrimary"
                 className={classes.Price}>
-                    50DZD
+                    {props.price + "DZD"}
                 </Typography>
             <div>
                 <IconButton

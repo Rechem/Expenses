@@ -29,8 +29,6 @@ const Form = (props) => {
             },
             width : 365,
             marginTop : theme.spacing(2)
-            // margin : '40px auto 8px auto',
-            // padding : '8px 16px 0 16px',
         },
         strings : {
             marginBottom : theme.spacing(2)
@@ -38,7 +36,6 @@ const Form = (props) => {
         buttons : {
             display : 'flex',
             marginTop : theme.spacing(6),
-            // marginBottom : theme.spacing(1),
             justifyContent :'flex-end',
         }
     }))
@@ -54,7 +51,7 @@ const Form = (props) => {
     }
 
     return (
-        <form className={classes.root}>
+        <form className={classes.root} onSubmit={() => props.onAdd(values)}>
             <Grid>
                 <Grid item xs={12}>
                     <TextField variant="outlined" label="Title"
@@ -87,7 +84,7 @@ const Form = (props) => {
                 </Grid>
             </Grid>
             <Box className={classes.buttons}>
-                <Button color="primary">Add</Button>
+                <Button color="primary" onClick={() => {props.onAdd(values);props.onClose()}}>Add</Button>
                 <Button onClick={props.onClose}>Cancel</Button>
             </Box>
         </form>

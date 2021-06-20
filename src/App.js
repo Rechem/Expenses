@@ -4,6 +4,11 @@ import Dashboard from './Stateless/Dashboard/Dashboard.js'
 import Layout from './Hoc/Layout'
 import Expenses from './Stateless/Expenses/Expenses'
 import { StylesProvider } from '@material-ui/core/styles';
+import { createStore } from 'redux';
+import ExpensesReducer from './store/reducer'
+import { Provider } from 'react-redux';
+
+const store = createStore(ExpensesReducer)
 
 const Theme = createMuiTheme({
   palette: {
@@ -33,14 +38,16 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <ThemeProvider theme = {Theme}>
-          <StylesProvider injectFirst>
-            <Layout>
-              <Dashboard/>
-              <Expenses/>
-            </Layout>
-          </StylesProvider>
-        </ThemeProvider>
+        <Provider store={store}>
+          <ThemeProvider theme = {Theme}>
+            <StylesProvider injectFirst>
+              <Layout>
+                <Dashboard/>
+                <Expenses/>
+              </Layout>
+            </StylesProvider>
+          </ThemeProvider>
+        </Provider>
       </React.Fragment>
     );
   }

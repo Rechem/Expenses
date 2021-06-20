@@ -1,4 +1,4 @@
-import * as actions from './actions'
+import * as actions from './actionTypes'
 
 const initialState = {
     expenses : [],
@@ -6,7 +6,7 @@ const initialState = {
     totalSpent : 0
 }
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.ADD_EXPENSE:
             const expense = {
@@ -27,3 +27,5 @@ const reducer = (state, action) => {
             return state
     }
 }
+
+export default reducer

@@ -1,10 +1,9 @@
-export const ADD_EXPENSE = 'ADD_EXPENSE'
-export const REMOVE_EXPENSE = 'REMOVE_EXPENSE'
-export const EDIT_EXPENSE = 'EDIT_EXPENSE'
+import * as actionTypes from './actionTypes'
 
 export const addExpense = (expenseData) => {
+    // console.log(expenseData)
     return {
-        type : ADD_EXPENSE,
+        type : actionTypes.ADD_EXPENSE,
         title : expenseData.title,
         description : expenseData.description,
         price : expenseData.price,

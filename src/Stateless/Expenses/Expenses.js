@@ -3,13 +3,15 @@ import Button from '@material-ui/core/Button';
 import classes from './Expenses.module.css'
 import Typography from '@material-ui/core/Typography';
 import Icon from '../UI/Icon/Icon';
-import Expense from '../UI/Expense/Expense'
+import Expense from './Expense/Expense'
 import DialogForm from '../UI/DialogForm'
 import Form from '../UI/Form'
 import Paper from '@material-ui/core/Paper'
 import {makeStyles } from '@material-ui/core/styles'
+import {connect} from 'react-redux'
+import * as actions from '../../store/actions'
 
-const Expenses = () => {
+const Expenses = (props) => {
 
     const useStyles = makeStyles(theme => ({
         expenses : {
@@ -17,7 +19,6 @@ const Expenses = () => {
         },
         addButton : {
             marginTop: 8,
-            marginBottom: 8,
         },
         text : {
             marginBotton : 8,
@@ -54,13 +55,25 @@ const Expenses = () => {
             onClick={handleOpen}>
                 <Typography variant="body1" component="div">Add new expense</Typography>
             </Button>
-            <Expense/>
-            {/* <Paper className={classes.pageContent}>
-                <Form/>
-            </Paper> */}
-            <DialogForm open={open} onClose={handleClose}/>
+            {props.expenses.map(expense =>
+            <Expense key={new Date().getUTCMilliseconds()} title={expense.title} date="Today" price={expense.price}/>
+            )}
+            {/* <Expense/> */}
+            <DialogForm open={open} onClose={handleClose} onAdd={props.addExpense}/>
         </section>
     );
 };
 
-export default Expenses;
+const mapStateToProps = state => {
+    return {
+        expenses : state.expenses
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addExpense : expenseData => dispatch(actions.addExpense(expenseData))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Expenses);
