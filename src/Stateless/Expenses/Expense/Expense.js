@@ -3,12 +3,13 @@ import { useTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Icon from '../../UI/Icon/Icon'
+import Icon from '../../UI/CategoriesIcons/Icon/Icon'
 import classes from './Expense.module.css'
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import CategoriesIcons from '../../UI/CategoriesIcons/CategoriesIcons'
 
 
 const Expense = (props) => {
@@ -31,20 +32,7 @@ const Expense = (props) => {
     return (
         <Card className={classes.root}>
             <div className={classes.CardBody}> 
-                <Box component="div"
-                style={
-                    {
-                        backgroundColor : fade(theme.palette.primary.main,0.1),
-                        height : 40,
-                        width : 40,
-                        marginRight : 16,
-                        borderRadius: 10,
-                        display : 'flex',
-                        justifyContent: 'center',
-                        alignItems : 'center'
-                    }}>
-                    <Icon size="24">local_cafe</Icon>
-                </Box>
+                <CategoriesIcons category = {props.category}/>
                 <Box>
             <Typography variant="body1" component="div" color="textPrimary">
                 {props.title}
@@ -56,7 +44,7 @@ const Expense = (props) => {
                 <Typography
                 variant="body1" component="div" color="textPrimary"
                 className={classes.Price}>
-                    {props.price + "DZD"}
+                    {props.price + " DZD"}
                 </Typography>
             <div>
                 <IconButton

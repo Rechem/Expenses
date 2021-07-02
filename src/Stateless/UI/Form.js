@@ -8,12 +8,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { FormControl, InputLabel } from '@material-ui/core';
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
+import * as categories from '../../store/categories'
 
 const initialValues = {
-    title : "",
-    description :"",
-    price :"",
-    category:"",
+    title : "a",
+    description :"b",
+    price :"2",
+    category:"FoodDrinks",
     date: new Date(),
 }
 
@@ -73,10 +74,10 @@ const Form = (props) => {
                                 <Select label="Category" defaultValue=""
                                 name="category" value={values.category} onChange={onChangeHandler}>
                                     <MenuItem value="">None</MenuItem>
-                                    <MenuItem value="FoodDrinks">Food &#38; Drinks</MenuItem>
-                                    <MenuItem value="Subscriptions">Subscriptions</MenuItem>
-                                    <MenuItem value="Electronics">Electronics</MenuItem>
-                                    <MenuItem value="Others">Others</MenuItem>
+                                    <MenuItem value={categories.FOODDRINKS}>Food &#38; Drinks</MenuItem>
+                                    <MenuItem value={categories.SUBSCRIPTIONS}>Subscriptions</MenuItem>
+                                    <MenuItem value={categories.ELECTRONICS}>Electronics</MenuItem>
+                                    <MenuItem value={categories.OTHERS}>Others</MenuItem>
                                 </Select>
                             </FormControl>
                         </Box>

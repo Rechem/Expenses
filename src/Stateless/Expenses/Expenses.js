@@ -2,11 +2,12 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import classes from './Expenses.module.css'
 import Typography from '@material-ui/core/Typography';
-import Icon from '../UI/Icon/Icon';
+import Icon from '../UI/CategoriesIcons/Icon/Icon';
 import Expense from './Expense/Expense'
 import DialogForm from '../UI/DialogForm'
 import Form from '../UI/Form'
 import Paper from '@material-ui/core/Paper'
+import Box from '@material-ui/core/Box'
 import {makeStyles } from '@material-ui/core/styles'
 import {connect} from 'react-redux'
 import * as actions from '../../store/actions'
@@ -55,9 +56,15 @@ const Expenses = (props) => {
             onClick={handleOpen}>
                 <Typography variant="body1" component="div">Add new expense</Typography>
             </Button>
-            {props.expenses.map(expense =>
-            <Expense key={new Date().getUTCMilliseconds()} title={expense.title} date="Today" price={expense.price}/>
-            )}
+            <Box style={{maxHeight : 300, overflow : 'scroll'}}>
+                {props.expenses.map(expense =>
+                <Expense key={expense.title + expense.date}
+                title={expense.title}
+                date="Today"
+                price={expense.price}
+                category={expense.category}/>
+                )}
+            </Box>
             {/* <Expense/> */}
             <DialogForm open={open} onClose={handleClose} onAdd={props.addExpense}/>
         </section>

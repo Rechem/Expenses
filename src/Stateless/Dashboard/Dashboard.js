@@ -3,8 +3,9 @@ import classes from './Dashboard.module.css'
 import TotalExpenses from './DashboardItems/TotalExpenses/TotalExpenses'
 import TotalSpent from './DashboardItems/TotalSpent/TotalSpent'
 import Typography from '@material-ui/core/Typography';
+import {connect} from 'react-redux'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
     return (
         <header>
@@ -13,11 +14,18 @@ const Dashboard = () => {
               Dashboard
             </Typography>
             <div className={classes.Dashboard}>
-                <TotalExpenses/>
-                <TotalSpent/>
+                <TotalExpenses>{props.totalExpenses}</TotalExpenses>
+                <TotalSpent>{props.totalSpent}</TotalSpent>
             </div>
         </header>
     );
 };
 
-export default Dashboard;
+const mapStateToPorps = state => {
+    return {
+        totalExpenses : state.totalExpenses,
+        totalSpent : state.totalSpent
+    }
+}
+
+export default connect(mapStateToPorps,null)(Dashboard);

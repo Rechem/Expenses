@@ -9,6 +9,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.ADD_EXPENSE:
+            console.log(action.date)
             const expense = {
                 title : action.title,
                 description : action.description,
@@ -18,7 +19,7 @@ const reducer = (state = initialState, action) => {
             }
             const updatedState = {
                 totalExpenses : state.totalExpenses + 1,
-                totalSpent : state.totalSpent + action.price,
+                totalSpent : state.totalSpent +  parseInt(action.price),
                 expenses : state.expenses.concat(expense)
             }
             return updatedState

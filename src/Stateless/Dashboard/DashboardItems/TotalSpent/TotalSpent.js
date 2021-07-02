@@ -3,14 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import Icon from '../../../UI/Icon/Icon'
+import Icon from '../../../UI/CategoriesIcons/Icon/Icon'
 
-const TotalSpent = () => {
+const TotalSpent = (props) => {
   const useStyles = makeStyles({
     root: {
       marginLeft : 8,
       width: 270,
-      borderRadius: 30,
     },
   });
 
@@ -21,7 +20,7 @@ const TotalSpent = () => {
           <CardContent>
             <Icon size="36">paid</Icon>
             <Typography variant="h3" component="div" align='left' gutterBottom>
-              6700 DZD
+              {props.children ? props.children : 0} DZD
             </Typography>
             <Typography variant="body1" component="div" color="textSecondary">
               Total spent
