@@ -24,8 +24,6 @@ const Expenses = (props) => {
         text : {
             marginBotton : 8,
         },
-        
-
     }))
 
     const classes = useStyles()
@@ -56,17 +54,20 @@ const Expenses = (props) => {
             onClick={handleOpen}>
                 <Typography variant="body1" component="div">Add new expense</Typography>
             </Button>
-            <Box style={{maxHeight : 300, overflow : 'scroll'}}>
+            <Box style={{maxHeight : 300, overflow : 'auto'}}>
                 {props.expenses.map(expense =>
-                <Expense key={expense.title + expense.date}
+                <Expense
+                key={expense.title + expense.date}
+                id={expense.id}
                 title={expense.title}
                 date="Today"
                 price={expense.price}
+                description = {expense.description}
                 category={expense.category}/>
                 )}
             </Box>
             {/* <Expense/> */}
-            <DialogForm open={open} onClose={handleClose} onAdd={props.addExpense}/>
+            <DialogForm open={open} onClose={handleClose} onSubmit={props.addExpense}/>
         </section>
     );
 };
@@ -79,7 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addExpense : expenseData => dispatch(actions.addExpense(expenseData))
+        addExpense : expenseData => dispatch(actions.addExpense(expenseData)),
     }
 }
 

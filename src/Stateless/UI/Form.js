@@ -11,16 +11,16 @@ import Button from '@material-ui/core/Button'
 import * as categories from '../../store/categories'
 
 const initialValues = {
-    title : "a",
-    description :"b",
-    price :"2",
-    category:"FoodDrinks",
+    title : "",
+    description :"",
+    price :"",
+    category:"",
     date: new Date(),
 }
 
 const Form = (props) => {
 
-    const [values, setValues] = useState(initialValues)
+    const [values, setValues] = useState(props.values ? props.values : initialValues)
 
     const useStyles = makeStyles(theme => ({
         root : {
@@ -85,7 +85,11 @@ const Form = (props) => {
                 </Grid>
             </Grid>
             <Box className={classes.buttons}>
+                {props.id ? 
+                <Button color="primary" onClick={() => {props.onAdd({...values, id: props.id});props.onClose()}}>Save</Button>
+                :
                 <Button color="primary" onClick={() => {props.onAdd(values);props.onClose()}}>Add</Button>
+                }
                 <Button onClick={props.onClose}>Cancel</Button>
             </Box>
         </form>

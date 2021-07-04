@@ -27,7 +27,7 @@ const Modal = (props) => {
           Add a new expense
           </DialogTitle>
           <DialogContent className={classes.root}>
-              <Form onClose = {props.onClose} onAdd = {props.onAdd}/>
+              <Form onClose = {props.onClose} onAdd = {props.onSubmit} values = {props.values} id={props.id}/>
           </DialogContent>
         </Dialog>
     );
